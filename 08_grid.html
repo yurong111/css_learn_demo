@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网格布局</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #garden,
+        #bg,
+        #basic,
+        #page{
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            /*grid-column-gap: 5px;*/
+            /*grid-row-gap: 5px;*/
+
+            width: 500px;
+            height: 500px;
+            background: transparent;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #garden {
+            z-index: 3;
+        }
+
+        #page , #basic {
+            top: 530px !important;
+        }
+
+        #page {
+            grid-gap: 5px;
+            /*grid-template-areas: "head head"
+                                "nav  main"
+                                "nav  foot";*/
+            /*grid-template-columns:50%;*/
+            /*grid-template-rows: 20% 20% 20% 20% 20%;*/
+        }
+
+        #page .item {
+            background: lemonchiffon;
+            width: 100%;
+            height: 100%;
+        }
+
+        #bg > div, #basic > div {
+            background: lightpink;
+            -webkit-box-shadow: inset 2px 2px 0 rgba(255, 255, 255, 0.05), inset -2px -2px 0 red;
+            -moz-box-shadow: inset 2px 2px 0 rgba(255, 255, 255, 0.05), inset -2px -2px 0 red;
+            box-shadow: inset 2px 2px 0 rgba(255, 255, 255, 0.05), inset -2px -2px 0 red;
+        }
+
+        #water {
+            background: lavender;
+        }
+
+        #sure,
+        #sure2 {
+            width: 80px;
+            height: 30px;
+        }
+
+        .right {
+            width: 300px;
+            height: 100%;
+            float: right;
+            padding: 20px;
+            box-sizing: border-box;
+            border-left: 5px solid lightsteelblue;
+        }
+
+        .left {
+            overflow: hidden;
+        }
+
+        #add {
+            width: 60px;
+            height: 24px;
+            line-height: 24px;
+        }
+
+
+/*        #page > .b1 {
+            grid-area: head;
+            background-color: lavender !important;
+        }
+
+        #page > .b2 {
+            grid-area: nav;
+            background-color: lavenderblush !important;
+        }
+
+        #page > .b3 {
+            grid-area: main;
+            background-color: lemonchiffon !important;
+        }
+
+        #page > .b4 {
+            grid-area: foot;
+            background-color: lightcyan !important;
+        }*/
+    </style>
+</head>
+<body>
+    <div style="height: 520px; border-bottom: 5px solid lightsteelblue">
+        <div class="right">
+            <div>
+                <label>
+                    grid-column-start: <input id="cStart" value="4"/>
+                </label>
+                <br/>
+                <label>
+                    grid-column-end: <input id="cEnd" value="6"/>
+                </label>
+                <br/>
+                <div>
+                    <label>等价于：grid-column:</label>
+                    <span id="col">4/6</span>
+                </div>
+
+                <label>
+                    grid-row-start: <input id="rStart" value="2"/>
+                </label>
+                <br/>
+                <label>
+                    grid-row-end: <input id="rEnd" value="4"/>
+                </label>
+                <br/>
+                <div>
+                    <label>等价于：grid-row:</label>
+                    <span id="row">2/4</span>
+                </div>
+
+                <div>一句话搞定：</div>
+                <div>grid-area: <span id="result">4 / 2 / 6 / 4</span></div>
+                <button id="sure">确定</button>
+            </div>
+        </div>
+        <div class="left">
+            <div id="garden">
+                <div id="water"></div>
+            </div>
+            <div id="bg">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+    <div style="height: 520px; border-bottom: 5px solid lightsteelblue">
+        <div class="right">
+            <div>
+                <label>
+                    grid-template-columns: <input id="tCol" value="150px 1fr"/>
+                </label>
+                <br/>
+                <label>
+                    grid-template-rows: <input id="tRow" value="50px 1fr 30px"/>
+                </label>
+                <br/>
+                <div>
+                    <label>等价于：grid-template:</label><br/>
+                    <span id="temp">50px 1fr 30px / 150px 1fr</span>
+                </div>
+                <label>
+                    grid-template-area: <br/>
+                    <input class="tArea" value="head head"/><br/>
+                    <input class="tArea" value="nav main"/><br/>
+                    <input class="tArea" value="nav foot"/><br/>
+                </label>
+                <br/>
+                <button id="sure2">确定</button>
+            </div>
+        </div>
+        <div class="left">
+            <div id="page">
+                <div class="b1 item">Header</div>
+                <div class="b2 item">Navigation</div>
+                <div class="b3 item">Main area</div>
+                <div class="b4 item">Footer</div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        window.onload = function() {
+            var sure = document.querySelector('#sure');
+            var sure2 = document.querySelector('#sure2');
+
+            setGrid1();
+            setGrid2();
+
+            sure.onclick = function() {
+                setGrid1();
+            }
+            sure2.onclick = function() {
+                setGrid2();
+            }
+        }
+
+        function setGrid1() {
+            var water = document.querySelector('#water');
+            var cStart = document.querySelector('#cStart').value;
+            var cEnd = document.querySelector('#cEnd').value;
+            var rStart = document.querySelector('#rStart').value;
+            var rEnd = document.querySelector('#rEnd').value;
+
+            setCol(water, cStart, cEnd);
+            setRow(water, rStart, rEnd);
+            setResult(cStart, cEnd, rStart, rEnd)
+        }
+
+        function setCol(water, cStart, cEnd) {
+            var col = document.querySelector('#col');
+
+            if (cStart && cEnd) {
+                water.style.gridColumnStart = Number(cStart);
+                water.style.gridColumnEnd = Number(cEnd);
+                col.innerHTML = cStart + '/' + cEnd;
+            }
+        }
+
+        function setRow(water, rStart, rEnd) {
+            var row = document.querySelector('#row');
+
+            if (rStart && rEnd) {
+                water.style.gridRowStart = Number(rStart);
+                water.style.gridRowEnd = Number(rEnd);
+                row.innerHTML = rStart + '/' + rEnd;
+            }
+        }
+
+        function setResult(cStart, cEnd, rStart, rEnd) {
+            var result = document.querySelector('#result');
+            result.innerHTML = cStart + '/' + rStart + '/' + cEnd + '/' + rEnd;
+        }
+
+
+
+        function setGrid2() {
+            var page = document.querySelector('#page');
+            var tCol = document.querySelector('#tCol').value;
+            var tRow = document.querySelector('#tRow').value;
+            var tAreaEl = document.querySelectorAll('.tArea');
+
+            if (tCol && tRow) {
+                console.log('tCOl', tCol, 'tRow', tRow);
+                page.style.gridTemplateColumns = tCol;
+                page.style.gridTemplateRows = tRow;
+
+                var blockArr = [];
+                var arr = Array.prototype.slice.apply(tAreaEl);
+                var areas = '';
+
+                if (tAreaEl && tAreaEl.length > -1) {
+                    arr.map(function(item, i){
+                        areas += '"' + item.value + '"';
+                        saveSplitString(blockArr, item.value);
+                    })
+
+
+                    if (areas.length > 0) {
+//                        page.style.gridTemplateAreas = '"head head" "nav main" "nav foot"';
+                        page.style.gridTemplateAreas = areas;
+                    }
+                }
+
+                var items = blockArr.distinct();
+                updateItemsFlag(items)
+            }
+        }
+
+        function updateItemsFlag(itemNameArr) {
+            var page = document.querySelector('#page');
+            var color = ['lavender', 'lavenderblush', 'lemonchiffon', 'lightcyan', 'lightsalmon', 'lightgoldenrodyellow'];
+            var len = itemNameArr.length;
+            var frag = document.createDocumentFragment();
+
+            if (len <= 6) {
+                for (var i=0; i<len; i++) {
+                    var node = document.createElement('items');
+                    node.setAttribute('class', 'item b'+(i));
+                    node.style.gridArea = itemNameArr[i];
+                    node.style.backgroundColor = color[i];
+                    node.textContent = itemNameArr[i];
+                    frag.appendChild(node);
+                }
+                page.innerHTML = "";
+                page.appendChild(frag);
+            }else {
+                alert('板块太多');
+            }
+
+        }
+
+
+        function saveSplitString(blockArr, str) {
+            var tArr = str.split(' ');
+            for (var i=0; i<tArr.length; i++) {
+                blockArr.push(tArr[i]);
+            }
+        }
+
+
+        Array.prototype.distinct = function() {
+            var arr = this,
+                i,
+                obj = {},
+                result = [],
+                len = arr.length;
+
+            for (i=0; i<arr.length; i++) {
+                if (!obj[arr[i]]) {
+                    obj[arr[i]] = 1;
+                    result.push(arr[i]);
+                }
+            }
+
+            return result;
+        }
+
+    </script>
+</body>
+</html>
