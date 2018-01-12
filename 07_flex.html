@@ -10,9 +10,13 @@
             padding: 0;
         }
 
+        body {
+            font-family: arial;
+        }
+
         .box {
             overflow: hidden;
-            width: 1000px;
+            /*width: 1000px;*/
         }
 
         .left {
@@ -22,10 +26,11 @@
         }
 
         .right {
-            float: right;
+            /*float: right;*/
             background: seashell;
-            width: 500px;
+            /*width: 500px;*/
             height: 100vh;
+            overflow: auto;
         }
 
         .flexBox {
@@ -39,8 +44,10 @@
         .doc {
             background: lavenderblush;
             padding: 30px 20px;
-            height: 100vh;
+            height: calc(100vh - 400px);
+            box-sizing: border-box;
             overflow: auto;
+            line-height: 24px;
         }
 
         .doc h1 {
@@ -49,8 +56,8 @@
         }
 
         .b {
-            margin: 5px;
-            width: 70px;
+            /*margin: 5px;*/
+            /*width: 70px;*/
             text-align: center;
             vertical-align: middle;
         }
@@ -63,27 +70,32 @@
         }
 
         .b1{
-            line-height: 50px;
+            line-height: 40px;
+            width: 50px;
             background: lavenderblush;
             font-size: 14px;
         }
         .b2{
-            line-height: 75px;
+            line-height: 65px;
+            width: 75px;
             background: lavender;
             font-size: 17px;
         }
         .b3{
-            line-height: 100px;
+            line-height: 91px;
+            width: 101px;
             background: lightcyan;
             font-size: 20px;
         }
         .b4{
-            line-height: 75px;
+            line-height: 65px;
+            width: 75px;
             background: lemonchiffon;
             font-size: 17px;
         }
         .b5{
-            line-height: 50px;
+            line-height: 40px;
+            width: 50px;
             background: honeydew;
             font-size: 14px;
         }
@@ -92,6 +104,10 @@
 
         .p {
             margin: 10px 20px;
+        }
+
+        h2 {
+            margin: 20px;
         }
 
         .p .title {
@@ -106,21 +122,22 @@
 
         .p input[type="text"] {
             width: 50px;
+            height: 20px;
         }
 
         .p label {
             margin-right: 10px;
         }
 
+        b {
+            padding: 0 5px;
+            background: plum;
+            border-radius: 2px;
+        }
+
     </style>
 </head>
 <body>
-
-<!--
-    justify-content: items对齐于主轴
-    align-content: items对齐于交叉轴（只作用多行），可理解为每行内容与交叉轴的对齐方式，可用align-items单独调整单行的对齐方式
-    align-items: 和align-content一样，区别是只作用单行
--->
 
 <div class="box">
     <div class="left">
@@ -139,7 +156,50 @@
     </div>
 
     <div class="right">
-        <div id="jc" class="p" data-doc="justify-content: items对齐于主轴，即x轴">
+
+        <h2>Properties for the flex container</h2>
+        <div id="flex-direction" class="p"
+             data-doc="flex-direction: 属性指定了内部元素是如何在 flex 容器中布局的，定义了主轴的方向(正方向或反方向)。<br/>
+                        <br/>初始值: row;
+                        <br/><b>row</b>: 容器的主轴为x轴，内容方向与主轴起点和主轴终点相同，文本从左到右；
+                        <br/><b>row-reverse</b>: 表现和row相同，但是置换了主轴起点和主轴终点，所以文本会置反，文本从右到左；
+                        <br/><b>column</b>：容器的主轴为y轴，内容方向与主轴起点和主轴终点相同，文本从上到下；
+                        <br/><b>column-reverse</b>：表现和column相同，但是置换了主轴起点和主轴终点，所以文本从下到上；
+        ">
+            <div class="title">flex-direction：</div>
+            <label><input type="radio" value="row" checked/>row</label>
+            <label><input type="radio" value="row-reverse"/>row-reverse</label>
+            <label><input type="radio" value="column"/>column</label>
+            <label><input type="radio" value="column-reverse"/>column-reverse</label>
+        </div>
+
+        <div id="flex-wrap" class="p"
+             data-doc="flex-wrap 指定 flex 元素单行显示还是多行显示。<br/>
+                       <br/>初始值: nowrap;
+                       <br/><b>nowrap</b>: flex 的元素被摆放到到一行；
+                       <br/><b>wrap</b>: flex 元素 被打断到多个行中；
+                       <br/><b>wrap-reverse</b>: 和 wrap 的行为一样，但是侧轴起点和侧轴终点置换。
+                       "
+        >
+            <div class="title">flex-wrap：</div>
+            <label><input type="radio" value="nowrap" checked/>nowrap</label>
+            <label><input type="radio" value="wrap"/>wrap</label>
+            <label><input type="radio" value="wrap-reverse"/>wrap-reverse</label>
+        </div>
+
+        <div id="justify-content" class="p"
+             data-doc="justify-content: 如何分配items在主容器主轴中的空间。<br/>
+                       <br/>初始值: flex-start;
+                       <br/><b>flex-start</b>: 从行首开始排列。每行第一个弹性元素与行首对齐，同时所有后续的弹性元素与前一个对齐；
+                       <br/><b>flex-end</b>: 从行尾开始排列。每行最后一个弹性元素与行尾对齐，其他元素将与后一个对齐；
+                       <br/><b>center</b>: 伸缩元素向每行中点排列。每行第一个元素到行首的距离将与每行最后一个元素到行尾的距离相同；
+                       <br/><b>baseline</b>: 基线对齐；
+                       <br/><b>space-between</b>: 在每行上均匀分配弹性元素。相邻元素间之间的距离相同。但是每行第一个元素与行首对齐，每行最后一个元素与行尾对齐；
+                       <br/><b>space-around</b>: 在每行上均匀分配弹性元素。相邻元素间之间的距离相同。但是每行第一个元素到行首的距离和每行最后一个元素到行尾的距离将会是相邻元素之间距离的一半；
+                       <br/><b>space-evenly</b>: 在每行上均匀分配弹性元素。每个相邻元素之间、每行第一个元素到行首和每行最后一个元素到行尾的距离，都是相等的。
+
+                        "
+        >
             <div class="title">justify-content：</div>
             <label><input type="radio" value="flex-start" checked/>flex-start</label>
             <label><input type="radio" value="flex-end"/>flex-end</label>
@@ -148,10 +208,23 @@
             <label><input type="radio" value="space-between"/>space-between</label>
             <label><input type="radio" value="space-around"/>space-around</label>
             <label><input type="radio" value="space-evenly"/>space-evenly</label>
-            <label><input type="radio" value="stretch"/>stretch</label>
+            <!--<label><input type="radio" value="stretch"/>stretch</label>-->
         </div>
 
-        <div id="ac" class="p" data-doc="align-content: items对齐于交叉轴，即y轴（只作用多行），可理解为每行内容与交叉轴的对齐方式，可用align-items单独调整单行的对齐方式">
+        <div id="align-content" class="p"
+             data-doc="align-content 分配容器中侧轴的空间，以整行为单位。<br/>
+                       <br/>初始值: stretch;
+                       <br/><b>flex-start</b>: 所有行从侧轴的始点开始对齐，后面每一行紧跟前一行；
+                       <br/><b>flex-end</b>: 所有行从侧轴终点开始对齐，后面每一行紧跟前一行；
+                       <br/><b>center</b>: 每行互相紧挨，相对于容器居中对齐；
+                       <br/><b>baseline</b>: 基线对齐；
+                       <br/><b>space-between</b>: 所有行之间平均分配容器中侧轴空间，相邻两行间距相等，但是容器的侧轴起点边和终点边分别与第一行和最后一行的边对齐，即不包括首尾行靠容器两侧；
+                       <br/><b>space-around</b>: 所有行平均分配容器中侧轴空间，相邻两行间距相等，但是容器的侧轴起点边和终点边分别与第一行和最后一行是相邻两行间距的一半；
+                       <br/><b>space-evenly</b>: 所有行平均分配容器中侧轴空间，相邻两行间距、以及首尾行靠容器两侧的空间都相等；
+                       <br/><b>stretch</b>: 拉伸所有行来填满剩余侧轴空间。剩余侧轴空间平均的分配给每一行。
+                       "
+            >
+             <!--data-doc="align-content: items对齐于交叉轴，即y轴（只作用多行），可理解为每行内容与交叉轴的对齐方式，可用align-items单独调整单行的对齐方式">-->
             <div class="title">align-content：</div>
             <label><input type="radio" value="flex-start"/>flex-start</label>
             <label><input type="radio" value="flex-end"/>flex-end</label>
@@ -163,33 +236,95 @@
             <label><input type="radio" value="stretch" checked/>stretch</label>
         </div>
 
-        <div id="ai" class="p" data-doc="和align-content一样，区别是只作用单行">
+        <div id="align-items" class="p"
+             data-doc="align-items在侧轴方向上将当前行上的弹性元素对齐。<br/>
+                       align-items属性指行中的item的对齐方式，而align-content则指行自身的对齐方式。<br/>
+                       <br/>初始值: stretch;
+                       <br/><b>flex-start</b>: 元素向侧轴起点对齐；
+                       <br/><b>flex-end</b>: 元素向侧轴终点对齐；
+                       <br/><b>center</b>: 元素在侧轴居中；
+                       <br/><b>baseline</b>: 基线对齐；
+                       <br/><b>stretch</b>: 弹性元素被在侧轴方向被拉伸到与容器相同的高度或宽度。
+                       "
+        >
             <div class="title">align-items：</div>
             <label><input type="radio" value="flex-start"/>flex-start</label>
             <label><input type="radio" value="flex-end"/>flex-end</label>
             <label><input type="radio" value="center"/>center</label>
-            <label><input type="radio" value="self-start"/>self-start</label>
-            <label><input type="radio" value="self-end"/>self-end</label>
             <label><input type="radio" value="baseline"/>baseline</label>
             <label><input type="radio" value="stretch" checked/>stretch</label>
         </div>
 
-        <div id="fd" class="p"  data-doc="flex-direction 属性指定了内部元素是如何在 flex 容器中布局的，定义了主轴的方向(正方向或反方向)。\\n abc">
-            <div class="title">flex-direction：</div>
-            <label><input type="radio" value="row" checked/>row</label>
-            <label><input type="radio" value="row-reverse"/>row-reverse</label>
-            <label><input type="radio" value="column"/>column</label>
-            <label><input type="radio" value="column-reverse"/>column-reverse</label>
+<!--**************************************************************************************-->
+
+        <h2>Properties for the flex items</h2>
+
+        <div id="align-self" class="p"
+             data-doc="align-self 会对齐当前 flex 行中的 flex 元素，并覆盖 align-items 的值. 如果任何 flex 元素的侧轴方向 margin 值设置为 auto，则会忽略 align-self<br/>
+                       <br/>初始值: auto;
+                       <br/><b>auto</b>: 设置为父元素的 align-items 值，如果该元素没有父元素的话，就设置为 stretch;
+                       <br/><b>flex-start</b>: flex 元素会对齐到侧轴的首端;
+                       <br/><b>flex-end</b>: flex 元素会对齐到侧轴的尾端;
+                       <br/><b>center</b>: flex 元素会对齐到侧轴的中间；
+                       <br/><b>baseline</b>: 所有的 flex 元素会沿着基线对齐；
+                       <br/><b>stretch</b>: flex 元素将会基于容器的宽和高，按照自身 margin box 的侧轴拉伸
+             "
+        >
+            <div class="title">align-self：</div>
+            <label id="asB1">
+                b1:
+                <label><input type="radio" value="auto" checked/>auto</label>
+                <label><input type="radio" value="flex-start"/>flex-start</label>
+                <label><input type="radio" value="flex-end"/>flex-end</label>
+                <label><input type="radio" value="center"/>center</label>
+                <label><input type="radio" value="baseline"/>baseline</label>
+                <label><input type="radio" value="stretch"/>stretch</label>
+            </label><br/>
+            <label id="asB2">
+                b2:
+                <label><input type="radio" value="auto" checked/>auto</label>
+                <label><input type="radio" value="flex-start"/>flex-start</label>
+                <label><input type="radio" value="flex-end"/>flex-end</label>
+                <label><input type="radio" value="center"/>center</label>
+                <label><input type="radio" value="baseline"/>baseline</label>
+                <label><input type="radio" value="stretch"/>stretch</label>
+            </label><br/>
+            <label id="asB3">
+                b3:
+                <label><input type="radio" value="auto" checked/>auto</label>
+                <label><input type="radio" value="flex-start"/>flex-start</label>
+                <label><input type="radio" value="flex-end"/>flex-end</label>
+                <label><input type="radio" value="center"/>center</label>
+                <label><input type="radio" value="baseline"/>baseline</label>
+                <label><input type="radio" value="stretch"/>stretch</label>
+            </label><br/>
+            <label id="asB4">
+                b4:
+                <label><input type="radio" value="auto" checked/>auto</label>
+                <label><input type="radio" value="flex-start"/>flex-start</label>
+                <label><input type="radio" value="flex-end"/>flex-end</label>
+                <label><input type="radio" value="center"/>center</label>
+                <label><input type="radio" value="baseline"/>baseline</label>
+                <label><input type="radio" value="stretch"/>stretch</label>
+            </label><br/>
+            <label id="asB5">
+                b5:
+                <label><input type="radio" value="auto" checked/>auto</label>
+                <label><input type="radio" value="flex-start"/>flex-start</label>
+                <label><input type="radio" value="flex-end"/>flex-end</label>
+                <label><input type="radio" value="center"/>center</label>
+                <label><input type="radio" value="baseline"/>baseline</label>
+                <label><input type="radio" value="stretch"/>stretch</label>
+            </label>
+
         </div>
 
-        <div id="fw" class="p"  data-doc="fw">
-            <div class="title">flex-wrap：</div>
-            <label><input type="radio" value="nowrap" checked/>nowrap</label>
-            <label><input type="radio" value="wrap"/>wrap</label>
-            <label><input type="radio" value="wrap-reverse"/>wrap-reverse</label>
-        </div>
-
-        <div id="order" class="p"  data-doc="order">
+        <div id="order" class="p"
+             data-doc="items在布局时的顺序。items按照order属性的值的增序进行布局。拥有相同order属性值的元素按照它们在源代码中出现的顺序进行布局。<br/>
+                       <br/>初始值: 0;
+                       <br/><b>[integer]</b>: 表示此可item的次序。
+             "
+        >
             <div class="title">order：</div>
             <label>
                 b1:<input type="text"/>
@@ -209,7 +344,37 @@
         </div>
 
 
-        <div id="flex" class="p" data-doc="flex">
+        <div id="flex" class="p"
+             data-doc="flex规定了弹性元素如何伸长或缩短以适应flex容器中的可用空间。这是一个简写属性，可以同时设置flex-grow, flex-shrink与flex-basis。<br/>
+                       <br/>初始值：
+                       <br/>flex-grow: 0
+                       <br/>flex-shrink: 1
+                       <br/>flex-basis: auto
+                       <br/>
+                       <br/><b>auto</b>: 元素会根据自身的宽度与高度来确定尺寸，但是会自行伸长以吸收flex容器中额外的自由空间，也会缩短至自身最小尺寸以适应容器;
+                       <br/><b>initial</b>: 属性默认值， 元素会根据自身宽高设置尺寸。它会缩短自身以适应容器，但不会伸长并吸收flex容器中的额外自由空间来适应容器 ;
+                       <br/><b>none</b>: 元素会根据自身宽高来设置尺寸。它是完全非弹性的：既不会缩短，也不会伸长来适应flex容器;
+                       <br/><b>[number]</b>: 一个无单位数值，元素会被赋予一个容器中自由空间的指定占比。<br/>
+
+                       <br/><b>单值</b>:
+                       <br/>一个无单位数(number): 它会被当作flex-grow的值;
+                       <br/>一个有效的宽度(width)值: 它会被当作flex-basis的值;
+                       <br/>关键字none, auto,或initial。
+
+                       <br/><b>双值</b>:第一个值必须为一个无单位数，并且它会被当作flex-grow的值。第二个值必须为以下之一
+                       <br/>一个无单位数(number): 它会被当作flex-grow的值;
+                       <br/>一个有效的宽度(width)值: 它会被当作flex-basis的值;
+
+                       <br/><b>三值</b>:
+                       <br/>第一个值必须为一个无单位数，并且它会被当作flex-grow的值;
+                       <br/>第二个值必须为一个无单位数，并且它会被当作flex-shrink的值;
+                       <br/>第三个值必须为一个有效的宽度值， 并且它会被当作flex-basis的值;<br/>
+
+
+                       <br/>默认情况下，元素不会缩短至小于内容框尺寸，若想改变这一状况，请设置元素的min-width 与 min-height属性。
+                       <br/>在大多数情况下，开发者需要将flex设置为auto，initial，none或一个无单位数。尝试调整下面的flex容器以观察这些值的作用。<br/>
+                       "
+        >
             <div class="title">flex：</div>
             <label>
                 b1:<input type="text"/>
@@ -228,7 +393,12 @@
             </label>
         </div>
 
-        <div id="flex-grow" class="p" data-doc="flex-grow 属性定义弹性盒子项（flex item）的拉伸因子">
+        <div id="flex-grow" class="p"
+             data-doc="flex-grow 属性定义弹性盒子项（flex item）的拉伸因子。<br/>
+                       <br/>初始值: 0;
+                       <br/><b>[number]</b>: 负值无效。
+            "
+        >
             <div class="title">flex-grow：</div>
             <label>
                 b1:<input type="text"/>
@@ -247,7 +417,12 @@
             </label>
         </div>
 
-        <div id="flex-shrink" class="p" data-doc="flex-shrink 属性指定了 flex 元素的收缩规则。flex 元素仅在默认宽度之和大于容器的时候才会发生收缩，其收缩的大小是依据 flex-shrink 的值。负值是不被允许的。">
+        <div id="flex-shrink" class="p"
+             data-doc="flex-shrink 属性指定了 flex 元素的收缩规则。flex 元素仅在默认宽度之和大于容器的时候才会发生收缩，其收缩的大小是依据 flex-shrink 的值。负值是不被允许的。<br/>
+                       <br/>初始值: 1;
+                       <br/><b>[number]</b>: 负值无效。
+            "
+        >
             <div class="title">flex-shrink：</div>
             <label>
                 b1:<input type="text"/>
@@ -266,7 +441,12 @@
             </label>
         </div>
 
-        <div id="flex-basis" class="p" data-doc="">
+        <div id="flex-basis" class="p"
+             data-doc="flex-basis 指定了 flex 元素在主轴方向上的初始大小。如果不使用 box-sizing 来改变盒模型的话，那么这个属性就决定了 flex 元素的内容盒（content-box）的宽或者高（取决于主轴的方向）的尺寸大小。<br/>
+                       <br/>初始值: auto;
+                       <br/><b>[width]</b>:
+            "
+        >
             <div class="title">flex-basis：</div>
             <label>
                 b1:<input type="text"/>
@@ -285,7 +465,6 @@
             </label>
         </div>
 
-        <!--<div id="submit" class="btn">确定</div>-->
     </div>
 </div>
 
@@ -293,26 +472,23 @@
 
     window.onload = function() {
 
-        update();
-        onClickJC();
-        onClickAC();
-        onClickAI();
-        onClickFD();
-        onClickFW();
-        onChangeOrder();
-        onChangeFlex();
-        onChangeFlexGrow();
-        onChangeFlexShrink();
-        onChangeFlexBasis();
+//        update();
+        init();
         onHover();
+        onClick();
+        onSubClick();
+        onChange();
     }
 
-    function update() {
-        var jc = document.querySelector('#jc');
-        var ac = document.querySelector('#ac');
-        var ai = document.querySelector('#ai');
-        var fd = document.querySelector('#fd');
-        var fw = document.querySelector('#fw');
+    function init() {
+        var jc = document.querySelector('#justify-content');
+        var ac = document.querySelector('#align-content');
+        var ai = document.querySelector('#align-items');
+        var fd = document.querySelector('#flex-direction');
+        var fw = document.querySelector('#flex-wrap');
+
+        var flexBox = document.querySelector('#flexBox');
+
 
         var jcActiveItem = getActiveItem(jc);
         var acActiveItem = getActiveItem(ac);
@@ -320,85 +496,89 @@
         var fdActiveItem = getActiveItem(fd);
         var fwActiveItem = getActiveItem(fw);
 
-        setFlexBoxValue({
-            jc: jcActiveItem && jcActiveItem.value,
-            ac: acActiveItem && acActiveItem.value,
-            ai: aiActiveItem && aiActiveItem.value,
-            fd: fdActiveItem && fdActiveItem.value,
-            fw: fwActiveItem && fwActiveItem.value
-        });
+        flexBox.style.justifyContent = jcActiveItem && jcActiveItem.value;
+        flexBox.style.alignContent = acActiveItem && acActiveItem.value;
+        flexBox.style.alignItems = aiActiveItem && aiActiveItem.value;
+        flexBox.style.flexDirection = fdActiveItem && fdActiveItem.value;
+        flexBox.style.flexWrap = fwActiveItem && fwActiveItem.value;
     }
 
-    function onClickJC() {
-        var jc = document.querySelector('#jc');
-        toggle(jc);
-    }
-    function onClickAC() {
-        var ac = document.querySelector('#ac');
-        toggle(ac);
-    }
-    function onClickAI() {
-        var ai = document.querySelector('#ai');
-        toggle(ai);
-    }
-    function onClickFD() {
-        var fd = document.querySelector('#fd');
-        toggle(fd);
-    }
-    function onClickFW() {
-        var fw = document.querySelector('#fw');
-        toggle(fw);
+    function update(id, type) {
+        var obj = document.querySelector('#'+id);
+        var activeItem = getActiveItem(obj);
+
+
+        if (type === 'ITEMS') { //弹性元素设置
+            var flexItemNum = id.substring(id.length-1, id.length);
+            document.querySelectorAll('.b')[flexItemNum-1].style.alignSelf = activeItem.value;;
+        }else {                 //容器设置
+            var flexBox = document.querySelector('#flexBox');
+            flexBox.style[id] = activeItem.value;
+        }
+
     }
 
-    function onChangeOrder() {
+    function onClick() {
+        var jc = document.querySelector('#justify-content');
+        var ac = document.querySelector('#align-content');
+        var ai = document.querySelector('#align-items');
+        var fd = document.querySelector('#flex-direction');
+        var fw = document.querySelector('#flex-wrap');
+
+        var arr = [jc, ac, ai, fd, fw];
+        arr.map(function(item, i) {
+            toggle(item, 'CONTAINER');
+        })
+    }
+
+
+    function onSubClick() {
+        var asB1 = document.querySelector('#asB1');
+        var asB2 = document.querySelector('#asB2');
+        var asB3 = document.querySelector('#asB3');
+        var asB4 = document.querySelector('#asB4');
+        var asB5 = document.querySelector('#asB5');
+
+        var arr = [asB1, asB2, asB3, asB4, asB5];
+        arr.map(function(item, i) {
+            toggle(item, 'ITEMS');
+        })
+    }
+
+    function onChange() {
         var order = document.querySelector('#order');
-        change(order, 'order');
-    }
-
-    function onChangeFlex() {
         var flex = document.querySelector('#flex');
-        change(flex, 'flex');
-    }
-
-    function onChangeFlexGrow() {
         var flexGrow = document.querySelector('#flex-grow');
-        change(flexGrow, 'flex-grow');
-    }
-
-    function onChangeFlexShrink() {
         var flexShrink = document.querySelector('#flex-shrink');
-        change(flexShrink, 'flex-shrink');
-    }
-
-    function onChangeFlexBasis() {
         var flexBasis = document.querySelector('#flex-basis');
-        change(flexBasis, 'flex-basis');
+
+        var arr = [order, flex, flexBasis, flexShrink, flexGrow];
+        arr.map(function(item, i) {
+            console.log('id', item.getAttribute('id'));
+            change(item, item.getAttribute('id'));
+        })
     }
 
     function onHover() {
 
-        var jc = document.querySelector('#jc');
-        var ac = document.querySelector('#ac');
-        var ai = document.querySelector('#ai');
-        var fd = document.querySelector('#fd');
-        var fw = document.querySelector('#fw');
+        var jc = document.querySelector('#justify-content');
+        var ac = document.querySelector('#align-content');
+        var ai = document.querySelector('#align-items');
+        var fd = document.querySelector('#flex-direction');
+        var fw = document.querySelector('#flex-wrap');
+
         var order = document.querySelector('#order');
         var flex = document.querySelector('#flex');
         var flexGrow = document.querySelector('#flex-grow');
         var flexShrink = document.querySelector('#flex-shrink');
         var flexBasis = document.querySelector('#flex-basis');
+        var alignSelf = document.querySelector('#align-self');
 
+        var arr = [jc, ac, ai, fd, fw, order, flex, flexGrow, flexShrink, flexBasis, alignSelf];
 
-        showDoc(jc);
-        showDoc(ac);
-        showDoc(ai);
-        showDoc(fd);
-        showDoc(fw);
-        showDoc(order);
-        showDoc(flex);
-        showDoc(flexGrow);
-        showDoc(flexShrink);
-        showDoc(flexBasis);
+        arr.map(function(item, i) {
+            showDoc(item);
+        })
 
     }
 
@@ -415,9 +595,9 @@
         var flexBox = document.querySelector('#flexBox');
         var items = flexBox.querySelectorAll('.b');
         items = [].slice.call(items);
-        console.log('items', items);
 
         obj.addEventListener('change', function(e) {
+
             var res = getInputGroupValues(obj);
 
             items.map(function(item, i) {
@@ -440,17 +620,7 @@
     }
 
 
-    function setFlexBoxValue(args) {
-        var flexBox = document.querySelector('#flexBox');
-
-        flexBox.style.justifyContent = args.jc;
-        flexBox.style.alignContent = args.ac;
-        flexBox.style.alignItems = args.ai;
-        flexBox.style.flexDirection = args.fd;
-        flexBox.style.flexWrap = args.fw;
-    }
-
-    function toggle(obj) {
+    function toggle(obj, type) {
 
         obj.addEventListener('click', function(e) {
             var radioGroup = obj.querySelectorAll('input');
@@ -465,7 +635,7 @@
                 e.target.checked = true;
             }
 
-            update();
+            update(obj.id, type);
         })
     }
 
