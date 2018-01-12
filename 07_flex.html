@@ -178,7 +178,7 @@
                        <br/>初始值: nowrap;
                        <br/><b>nowrap</b>: flex 的元素被摆放到到一行；
                        <br/><b>wrap</b>: flex 元素 被打断到多个行中；
-                       <br/><b>wrap-reverse</b>: 和 wrap 的行为一样，但是侧轴起点和侧轴终点置换。
+                       <br/><b>wrap-reverse</b>: 和 wrap 的行为一样，但是交叉轴起点和交叉轴终点置换。
                        "
         >
             <div class="title">flex-wrap：</div>
@@ -212,16 +212,16 @@
         </div>
 
         <div id="align-content" class="p"
-             data-doc="align-content 分配容器中侧轴的空间，以整行为单位。<br/>
+             data-doc="align-content 分配容器中交叉轴的空间，以整行为单位。即多根轴线的对齐方式，如果项目只有一根轴线，该属性不起作用。<br/>
                        <br/>初始值: stretch;
-                       <br/><b>flex-start</b>: 所有行从侧轴的始点开始对齐，后面每一行紧跟前一行；
-                       <br/><b>flex-end</b>: 所有行从侧轴终点开始对齐，后面每一行紧跟前一行；
+                       <br/><b>flex-start</b>: 所有行从交叉轴的始点开始对齐，后面每一行紧跟前一行；
+                       <br/><b>flex-end</b>: 所有行从交叉轴终点开始对齐，后面每一行紧跟前一行；
                        <br/><b>center</b>: 每行互相紧挨，相对于容器居中对齐；
                        <br/><b>baseline</b>: 基线对齐；
-                       <br/><b>space-between</b>: 所有行之间平均分配容器中侧轴空间，相邻两行间距相等，但是容器的侧轴起点边和终点边分别与第一行和最后一行的边对齐，即不包括首尾行靠容器两侧；
-                       <br/><b>space-around</b>: 所有行平均分配容器中侧轴空间，相邻两行间距相等，但是容器的侧轴起点边和终点边分别与第一行和最后一行是相邻两行间距的一半；
-                       <br/><b>space-evenly</b>: 所有行平均分配容器中侧轴空间，相邻两行间距、以及首尾行靠容器两侧的空间都相等；
-                       <br/><b>stretch</b>: 拉伸所有行来填满剩余侧轴空间。剩余侧轴空间平均的分配给每一行。
+                       <br/><b>space-between</b>: 所有行之间平均分配容器中交叉轴空间，相邻两行间距相等，但是容器的交叉轴起点边和终点边分别与第一行和最后一行的边对齐，即不包括首尾行靠容器两侧；
+                       <br/><b>space-around</b>: 所有行平均分配容器中交叉轴空间，相邻两行间距相等，但是容器的交叉轴起点边和终点边分别与第一行和最后一行是相邻两行间距的一半；
+                       <br/><b>space-evenly</b>: 所有行平均分配容器中交叉轴空间，相邻两行间距、以及首尾行靠容器两侧的空间都相等；
+                       <br/><b>stretch</b>: 拉伸所有行来填满剩余交叉轴空间。剩余交叉轴空间平均的分配给每一行。
                        "
             >
              <!--data-doc="align-content: items对齐于交叉轴，即y轴（只作用多行），可理解为每行内容与交叉轴的对齐方式，可用align-items单独调整单行的对齐方式">-->
@@ -237,14 +237,14 @@
         </div>
 
         <div id="align-items" class="p"
-             data-doc="align-items在侧轴方向上将当前行上的弹性元素对齐。<br/>
+             data-doc="align-items在交叉轴方向上将当前行上的弹性元素对齐。<br/>
                        align-items属性指行中的item的对齐方式，而align-content则指行自身的对齐方式。<br/>
                        <br/>初始值: stretch;
-                       <br/><b>flex-start</b>: 元素向侧轴起点对齐；
-                       <br/><b>flex-end</b>: 元素向侧轴终点对齐；
-                       <br/><b>center</b>: 元素在侧轴居中；
+                       <br/><b>flex-start</b>: 元素向交叉轴起点对齐；
+                       <br/><b>flex-end</b>: 元素向交叉轴终点对齐；
+                       <br/><b>center</b>: 元素在交叉轴居中；
                        <br/><b>baseline</b>: 基线对齐；
-                       <br/><b>stretch</b>: 弹性元素被在侧轴方向被拉伸到与容器相同的高度或宽度。
+                       <br/><b>stretch</b>: 弹性元素被在交叉轴方向被拉伸到与容器相同的高度或宽度。
                        "
         >
             <div class="title">align-items：</div>
@@ -260,14 +260,14 @@
         <h2>Properties for the flex items</h2>
 
         <div id="align-self" class="p"
-             data-doc="align-self 会对齐当前 flex 行中的 flex 元素，并覆盖 align-items 的值. 如果任何 flex 元素的侧轴方向 margin 值设置为 auto，则会忽略 align-self<br/>
+             data-doc="align-self 会对齐当前 flex 行中的 flex 元素，并覆盖 align-items 的值. 如果任何 flex 元素的交叉轴方向 margin 值设置为 auto，则会忽略 align-self<br/>
                        <br/>初始值: auto;
                        <br/><b>auto</b>: 设置为父元素的 align-items 值，如果该元素没有父元素的话，就设置为 stretch;
-                       <br/><b>flex-start</b>: flex 元素会对齐到侧轴的首端;
-                       <br/><b>flex-end</b>: flex 元素会对齐到侧轴的尾端;
-                       <br/><b>center</b>: flex 元素会对齐到侧轴的中间；
+                       <br/><b>flex-start</b>: flex 元素会对齐到交叉轴的首端;
+                       <br/><b>flex-end</b>: flex 元素会对齐到交叉轴的尾端;
+                       <br/><b>center</b>: flex 元素会对齐到交叉轴的中间；
                        <br/><b>baseline</b>: 所有的 flex 元素会沿着基线对齐；
-                       <br/><b>stretch</b>: flex 元素将会基于容器的宽和高，按照自身 margin box 的侧轴拉伸
+                       <br/><b>stretch</b>: flex 元素将会基于容器的宽和高，按照自身 margin box 的交叉轴拉伸
              "
         >
             <div class="title">align-self：</div>
@@ -321,7 +321,7 @@
 
         <div id="order" class="p"
              data-doc="items在布局时的顺序。items按照order属性的值的增序进行布局。拥有相同order属性值的元素按照它们在源代码中出现的顺序进行布局。<br/>
-                       <br/>初始值: 0;
+                       <br/>初始值: 0；数值越小，排列越靠前;
                        <br/><b>[integer]</b>: 表示此可item的次序。
              "
         >
@@ -372,6 +372,7 @@
 
 
                        <br/>默认情况下，元素不会缩短至小于内容框尺寸，若想改变这一状况，请设置元素的min-width 与 min-height属性。
+                       <br/>该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)。
                        <br/>在大多数情况下，开发者需要将flex设置为auto，initial，none或一个无单位数。尝试调整下面的flex容器以观察这些值的作用。<br/>
                        "
         >
@@ -395,7 +396,7 @@
 
         <div id="flex-grow" class="p"
              data-doc="flex-grow 属性定义弹性盒子项（flex item）的拉伸因子。<br/>
-                       <br/>初始值: 0;
+                       <br/>初始值: 0；即如果存在剩余空间，也不放大；
                        <br/><b>[number]</b>: 负值无效。
             "
         >
@@ -419,7 +420,7 @@
 
         <div id="flex-shrink" class="p"
              data-doc="flex-shrink 属性指定了 flex 元素的收缩规则。flex 元素仅在默认宽度之和大于容器的时候才会发生收缩，其收缩的大小是依据 flex-shrink 的值。负值是不被允许的。<br/>
-                       <br/>初始值: 1;
+                       <br/>初始值: 1；当空间不足时，都将等比例缩小;
                        <br/><b>[number]</b>: 负值无效。
             "
         >
