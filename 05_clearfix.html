@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BFC</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            min-height: 150px;
+            margin: 20px;
+            overflow: hidden;
+        }
+
+        .bg1 {
+            background: lavenderblush;
+        }
+
+        .bg2 {
+            background: lavender;
+        }
+
+        .bg3 {
+            background: lightcyan;
+        }
+
+        .bg4 {
+            background: lightyellow;
+        }
+
+        .bg5 {
+            background: honeydew;
+        }
+
+        .left {
+            float: left;
+            width: 40%;
+        }
+
+        .doc {
+            margin: 20px;
+        }
+
+        .right {
+            width: 60%;
+            overflow: hidden;
+            padding-top: 20px;
+        }
+
+        .container {
+            border: 3px solid mediumvioletred;
+            width: 90%;
+            box-sizing: border-box;
+            min-width: 250px;
+        }
+
+        .sub1 {
+            width: 100px;
+            height: 50px;
+            background: slateblue;
+        }
+
+        .sub2 {
+            width: 100px;
+            height: 50px;
+            background: coral;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px;
+        }
+
+        h2 {
+            margin: 20px;
+        }
+
+        .clearfix {
+            clear: both;
+        }
+
+        /*一般还会+before，防止margin重叠*/
+        .c-after:after {
+            content: '';
+            visibility: hidden;
+            height: 0;
+            clear: both;
+            display: block;
+        }
+
+        .ofh {
+            overflow: hidden;
+        }
+
+        .ib {
+            display: inline-block;
+        }
+
+    </style>
+</head>
+<body>
+<!--
+
+https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context
+
+-->
+<h1>利用 clear属性，清除浮动</h1>
+
+<h2>空元素清浮动</h2>
+
+<div class="box bg1">
+    <div class="left">
+        <div class="doc">
+            在容器中增加一个空的元素<pre>&lt;div class="clearfix"&gt; &lt;/div&gt;</pre>用于清浮动clear: both。<br/>
+            缺点：需要增加空元素
+        </div>
+    </div>
+    <div class="right">
+        <div class="container">
+            <div class="fl sub1"></div>
+            <div class="fr sub2"></div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+<h2>afert伪类清浮动</h2>
+<div class="box bg2">
+    <div class="left">
+        <div class="doc">
+            在容器中增加伪类来实现清浮动，较为完美的实现方式。
+        </div>
+    </div>
+    <div class="right">
+        <div class="container c-after">
+            <div class="fl sub1"></div>
+            <div class="fr sub2"></div>
+        </div>
+    </div>
+</div>
+
+<h2>父级也浮动清浮动</h2>
+<div class="box bg3">
+    <div class="left">
+        <div class="doc">
+            将父级也浮动起来！
+        </div>
+    </div>
+    <div class="right">
+        <div class="container fl">
+            <div class="fl sub1"></div>
+            <div class="fr sub2"></div>
+        </div>
+    </div>
+</div>
+
+<h1>使父容器或容器中最后一个元素形成BFC，清除浮动</h1>
+<!--
+1. float的值不为none。
+2. position的值不为relative和static。
+3. display的值为table-cell, table-caption, inline-block中的任何一个。
+4. overflow的值为auto,scroll或hidden。
+-->
+
+<h2>overflow:hidden 清浮动</h2>
+<div class="box bg5">
+    <div class="left">
+        <div class="doc">
+            触发BFC：
+            <br/>1. float的值不为none。
+            <br/>2. position的值不为relative和static。
+            <br/>3. display的值为table-cell, table-caption, inline-block中的任何一个。
+            <br/>4. overflow的值为auto,scroll或hidden。
+        </div>
+    </div>
+    <div class="right">
+        <div class="container ofh">
+            <div class="fl sub1"></div>
+            <div class="fr sub2"></div>
+        </div>
+    </div>
+</div>
+
+<h2>display:inline-block 清浮动</h2>
+<div class="box bg4">
+    <div class="left">
+        <div class="doc">
+            同上
+        </div>
+    </div>
+    <div class="right">
+        <div class="container ib">
+            <div class="fl sub1"></div>
+            <div class="fr sub2"></div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
