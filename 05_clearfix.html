@@ -100,6 +100,13 @@
             display: block;
         }
 
+        /*一般还会+before，防止margin重叠*/
+        .c-after2:after {
+            content: '';
+            clear: both;
+            display: table;
+        }
+
         .ofh {
             overflow: hidden;
         }
@@ -114,6 +121,7 @@
 <!--
 
 https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context
+http://nicolasgallagher.com/micro-clearfix-hack/
 
 -->
 <h1>利用 clear属性，清除浮动</h1>
@@ -145,6 +153,21 @@ https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context
     </div>
     <div class="right">
         <div class="container c-after">
+            <div class="fl sub1"></div>
+            <div class="fr sub2"></div>
+        </div>
+    </div>
+</div>
+
+<h2>afert伪类简易清浮动</h2>
+<div class="box bg2">
+    <div class="left">
+        <div class="doc">
+            在容器中增加伪类来实现清浮动，较为完美的实现方式。
+        </div>
+    </div>
+    <div class="right">
+        <div class="container c-after2">
             <div class="fl sub1"></div>
             <div class="fr sub2"></div>
         </div>
