@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BFC</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+/*        .ofh {
+            overflow: hidden;
+        }
+
+        .aside {
+            width: 100px;
+            height: 150px;
+            float: left;
+            background: #f66;
+        }
+
+        .main {
+            height: 200px;
+            background: #fcc;
+        }
+
+        !*请浮动*!
+        .clearfix:before {
+            content: '';
+            display: table;
+        }
+
+        .clearfix:after {
+            content: '';
+            display: table;
+            clear: both;
+            font-size:0;
+            height: 0;
+            visibility: hidden;
+        }
+
+        .clearfix .main {
+            width: 200px;
+            float: left;
+        }
+
+
+        .par {
+            border: 5px solid #fcc;
+        }
+
+        .child1 {
+            border: 5px solid #f66;
+            width: 100px;
+            height: 100px;
+            float: left;
+        }
+
+        .child2 {
+            overflow: hidden;
+        }*/
+
+        .box {
+            min-height: 150px;
+            margin: 20px;
+        }
+
+        .bg1 {
+            background: #CCCCFF;
+        }
+
+        .bg2 {
+            background: #FFFFCC;
+        }
+
+        .bg3 {
+            background: #CCFFFF;
+        }
+
+
+
+        .container {
+            box-sizing: border-box;
+            min-width: 250px;
+            background: #FF9999;
+        }
+
+        .sub1 {
+            width: 100px;
+            height: 50px;
+            background: #9999CC;
+        }
+
+        .sub2 {
+            width: 100px;
+            height: 50px;
+            background: #666699;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        .mg10 {
+            margin: 10px;
+        }
+
+        .mg20 {
+            margin: 20px;
+        }
+
+        .left {
+            float: left;
+            width: 40%;
+        }
+
+        .doc {
+            margin: 20px;
+        }
+
+        .right {
+            width: 60%;
+            overflow: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px;
+        }
+
+        h2 {
+            margin: 20px;
+        }
+
+        .bfc {
+             overflow: hidden;
+            /* display: inline-block; */
+            /* display: table; */
+            /* display: table-cell; */
+            /* position: fixed; */
+            /* position: absolute; */
+            /*overflow: auto;*/
+        }
+    </style>
+</head>
+<body>
+<!--
+
+https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context
+
+-->
+
+<!--
+BFC特性：
+BFC会阻止垂直外边距（margin-top、margin-bottom）折叠
+BFC不会重叠浮动元素
+BFC可以包含浮动
+-->
+<div>
+    <h1>BFC</h1>
+    <p style="margin-left: 20px;">
+        设置生成BFC：
+        <br/>1. float的值不为none。
+        <br/>2. position的值不为relative和static。
+        <br/>3. display的值为table-cell, table-caption, inline-block中的任何一个。
+        <br/>4. overflow的值为auto,scroll或hidden。
+    </p>
+
+    <h2>BFC会阻止垂直外边距（margin-top、margin-bottom）折叠</h2>
+    <div class="box bg1">
+        <div class="left">
+            <div class="doc">无BFC时，垂直外边距折叠</div>
+        </div>
+        <div class="right">
+            <div class="container mg20">
+                <div class="sub1 mg10"></div>
+                <div class="sub2 mg10"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box bg1">
+        <div class="left">
+            <div class="doc">容器设置BFC时，阻止垂直外边距折叠</div>
+        </div>
+        <div class="right">
+            <div class="container mg20 bfc">
+                <div class="sub1 mg10"></div>
+                <div class="sub2 mg10"></div>
+            </div>
+        </div>
+    </div>
+
+    <h2>BFC不会重叠浮动元素</h2>
+    <div class="box bg2">
+        <div class="left">
+            <div class="doc">无BFC时，右边盒子重叠在浮动元素下面</div>
+        </div>
+        <div class="right">
+            <div class="container mg20">
+                <div class="fl sub1"></div>
+                <div class="sub2"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box bg2">
+        <div class="left">
+            <div class="doc">右边盒子设置BFC时，不会重叠浮动元素</div>
+        </div>
+        <div class="right">
+            <div class="container mg20">
+                <div class="fl sub1"></div>
+                <div class="sub2 bfc"></div>
+            </div>
+        </div>
+    </div>
+
+    <h2>BFC可以包含浮动</h2>
+    <div class="box bg3">
+        <div class="left">
+            <div class="doc">容器无BFC时，因没有包含浮动元素而无高度</div>
+        </div>
+        <div class="right">
+            <div class="container mg20">
+                <div class="fl sub1"></div>
+                <div class="fr sub2"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box bg3">
+        <div class="left">
+            <div class="doc">容器设置BFC时，因包含浮动元素而撑开了高度</div>
+        </div>
+        <div class="right">
+            <div class="container mg20 bfc">
+                <div class="fl sub1"></div>
+                <div class="fr sub2"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--    左右排列，其中非自适应边为浮动，自适应边为非浮动，并overflow:hidden清浮动
+    <div class="aside"></div>
+    <div class="main ofh"></div>
+
+    &lt;!&ndash;左右排列，两列都浮动，都需要固定宽度&ndash;&gt;
+    <br/>
+    <div class="par">
+        <div class="child1"></div>
+        <div class="child2">
+            <p style="float: left; width: 100px; height: 50px; background: red"></p>
+            <p style="float: right; width: 200px;">死灵法师多路阀是的发送放大死灵法师多路阀是的发送放大死灵法师多路阀是的发送放大死灵法师多路阀是的发送放大死灵法师多路阀是的发送放大死灵法师多路阀是的发送放大死灵法师多路阀是的发送放大死灵法师多路阀是的发送放大死灵法师多路阀是的发送放大</p>
+        </div>
+    </div>
+
+    <br/>
+    <div class="aside"></div>
+    <div class="main" style=" display: table-cell; width: 9999px;"></div>
+    父级，清浮动
+    before: content: " ";display: table;
+    after:  content: " ";display: table; clear: both; font-size:0; height: 0; visibility: hidden;
+    <br/>
+    <div class="clearfix">
+        <div class="aside"></div>
+        <div class="main"></div>
+    </div>-->
+</body>
+</html>
