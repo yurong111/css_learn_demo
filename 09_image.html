@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>image</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            max-width: 800px;
+            min-width: 350px;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px;
+        }
+
+        h2 {
+            margin: 20px 20px 20px 0;
+        }
+
+        .container {
+            font-size: 0;
+            overflow: hidden;
+        }
+
+        .pic {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .r20 {
+            width: 50%;
+            border-radius: 20px;
+        }
+
+        .r50p {
+            width: 50%;
+            border-radius: 100%;
+        }
+
+        .w150 {
+            padding: 5px;
+            width: 150px;
+            border: 1px solid #ddd;
+        }
+
+        .w100p {
+            width: 100%;
+        }
+
+        .left {
+            float: left;
+            width: 50%;
+            font-size: 14px;
+        }
+
+        .right {
+            width: 50%;
+            float: left;
+            font-size: 14px;
+        }
+
+        .right .pic:hover {
+            box-shadow: 0 0 2px 1px rgba(0, 0, 0, .1);
+        }
+
+
+        .c3 img{
+            padding: 2%;
+            border: 1px solid #ddd;
+            border-radius: 2%;
+            box-sizing: border-box;
+        }
+
+        .c4 {
+            width: 300px;
+            position: relative;
+            font-size: 24px;
+        }
+
+        .c4 .hov {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 100%;
+            color: transparent;
+            background: mediumvioletred;
+            text-align: center;
+            transition: .5s;
+            vertical-align: middle;
+        }
+
+        .c4:hover .hov {
+            bottom: 0;
+            color: #fff;
+        }
+
+        .c4 .hov:after {
+            content: '';
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h1>image用法</h1>
+
+    <h2>圆角图片</h2>
+    <div class="container c1">
+        <img class="pic r20" src="images/0004.jpg"/>
+        <img class="pic r50p" src="images/0003.jpg"/>
+    </div>
+
+    <h2>图片缩略图</h2>
+    <div class="container c2">
+        <div class="left">
+            <h3>无link</h3>
+            <img class="pic w150" src="images/0004.jpg"/>
+        </div>
+        <div class="right">
+            <h3>有link</h3>
+            <a href="images/0003.jpg" target="_blank"><img class="pic w150" src="images/0003.jpg"/></a>
+        </div>
+    </div>
+
+    <h2>图片自适应</h2>
+    <div class="container c3">
+        <img class="pic w100p" src="images/0004.jpg"/>
+    </div>
+
+    <h2>图片停悬覆盖</h2>
+    <div class="container c4">
+        <img class="pic w100p" src="images/0003.jpg"/>
+        <div class="hov">花花</div>
+    </div>
+</div>
+
+</body>
+</html>
