@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>background</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 600px;
+            margin: 0 auto;
+        }
+
+        .left {
+            width: 100%;
+        }
+
+        .right {
+            margin: 20px;
+        }
+
+        .container {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #9999CC;
+            border-radius: 5px;
+            height: 300px;
+            margin-bottom: 20px;
+
+            background-repeat:  no-repeat ;
+            background-size: contain;
+            background-position: center;
+        }
+
+        .left:nth-child(1) .container {
+            background-image: url(images/0004.jpg);
+        }
+
+        .left:nth-child(2) .container {
+            background-image: url(images/0003.jpg);
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>背景设置</h1>
+
+    <div class="box">
+        <div class="left">
+            <div class="container"></div>
+        </div>
+        <div class="left">
+            <div class="container"></div>
+        </div>
+
+        <!--
+            contain: 显示所有，不会溢出，但是会出现留白域；
+            cover: 填满，会溢出，溢出裁剪；
+        -->
+        <div class="right">
+            <h2>background-size属性：</h2>
+            <label>
+                <input type="radio" value="0" checked/> contain；显示所有，不会溢出，但是会出现留白域；
+            </label>
+            <br/>
+            <label>
+                <input type="radio" value="1"/> cover; 填满，会溢出，溢出裁剪；
+            </label>
+            <br/>
+            <label>
+                <input type="radio" value="2"/> width: 100%; height: auto;
+            </label>
+            <br/>
+            <label>
+                <input type="radio" value="3"/> width: auto; height: 100%;
+            </label>
+        </div>
+    </div>
+
+
+    <script>
+        window.onload = function() {
+            toggle();
+        }
+
+
+        function toggle() {
+            var right = document.querySelector('.right');
+
+
+            right.addEventListener('click', function(e) {
+
+                handle(e.target)
+            })
+        }
+
+        function handle(el) {
+            var inputs = document.querySelectorAll('input');
+            inputs = [].slice.call(inputs);
+
+            if (el.tagName == 'INPUT') {
+                inputs.map(function(item, i){
+                    item.checked = false;
+                })
+
+                el.checked = true;
+                setStyle(el);
+            }
+        }
+
+        function setStyle(el) {
+            var val = Number(el.value);
+            var containers = document.querySelectorAll('.container');
+            containers = [].slice.call(containers);
+
+            switch (val) {
+                case 0:
+                    val = 'contain';
+                    break;
+                case  1:
+                    val = 'cover';
+                    break;
+                case 2:
+                    val = '100% auto';
+                    break;
+                case 3:
+                    val = 'auto 100%';
+                    break;
+            }
+
+            if (isNaN(val)) {
+                containers.map(function(item, i) {
+                    item.style.backgroundSize = val;
+                })
+            }
+        }
+
+    </script>
+</body>
+</html>
