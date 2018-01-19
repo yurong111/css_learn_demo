@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>animation</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 400px;
+            height: 400px;
+            background: #3498db;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 100px;
+            position: relative;
+        }
+
+        .box {
+            position: absolute;
+            z-index: 3;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+        .down {
+            animation: down 1.6s ease-in infinite both;
+        }
+
+        .up {
+            animation: up 1.6s ease-in infinite both;
+        }
+
+        .squeeze {
+            transform-origin: 50% 100%;
+            animation: squeeze 1.6s cubic-bezier(0.72, 0.03, 0.28, 0.97) infinite both;
+        }
+
+        .rotate-in {
+            animation: rotate-in 1.6s ease-out infinite both;
+        }
+
+        .rotate-out {
+            animation: rotate-out 1.6s ease-in infinite both;
+        }
+
+        .square {
+            width: 100px;
+            height: 100px;
+            background: #fff;
+        }
+
+        .shadow {
+            position: absolute;
+            z-index: -1;
+            bottom: -2px;
+            left: -4px;
+            right: -4px;
+            height: 2px;
+            border-radius: 50%;
+            box-shadow: 0 0 0 8px rgba(0, 0, 0, .2);
+            background: rgba(0, 0, 0, .2);
+            animation: shadow 1.6s ease-in-out infinite both;
+        }
+        
+        
+        @keyframes down {
+            0% { transform: translateY(-100px); }
+            20%, 100% {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes up {
+            0%, 75% { transform: translateY(0); }
+            100% {
+                transform: translateY(-100px);
+            }
+        }
+
+        @keyframes squeeze {
+            0%, 4% { transform: scale(1); }
+            45% { transform: scale(1.8, 0.4); }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes rotate-in {
+            0%{ transform: rotate(-135deg); }
+            20%, 100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        @keyframes rotate-out {
+            0%, 80%{ transform: rotate(0deg); }
+            100% {
+                transform: rotate(135deg);
+            }
+        }
+
+        @keyframes shadow {
+            0%, 100%{ transform: scaleX(0.5); }
+            45%, 50% {
+                transform: scaleX(1.8);
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="box">
+            <div class="down">
+                <div class="up">
+                    <div class="squeeze">
+                        <div class="rotate-in">
+                            <div class="rotate-out">
+                                <div class="square"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shadow"></div>
+        </div>
+
+    </div>
+</body>
+</html>
