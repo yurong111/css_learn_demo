@@ -138,6 +138,10 @@
 
     <script>
         window.onload = function() {
+            productStart();
+        }
+
+        function productStart() {
             var startNum = 800;
 
             var starts = document.querySelector('#starts')
@@ -155,8 +159,7 @@
             starts.appendChild(frag);
         }
 
-
-        function setStartAttribute(el, i) {
+        function setStartAttribute(el, startIndex) {
             var maxSize = 3;
             var parentNum1 = ~~(Math.random()*100);
             var parentNum2 = ~~(Math.random()*100);
@@ -168,7 +171,7 @@
             el.style.width = size + 'px';
 
 
-            if (!(i % 5) && size >= 1) {
+            if (!(startIndex % 5) && size >= 1) {
                 var oldClass = el.getAttribute('class');
                 el.setAttribute('class', oldClass + ' shine')
             }
