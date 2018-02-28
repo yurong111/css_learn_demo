@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        /** {
+            margin: 0;
+            pandding: 0;
+        }*/
+
+        .a {
+            background: lightpink;
+        }
+
+        .b {
+            background: lavender;
+            text-align: center;
+        }
+
+        .c {
+            background: lightyellow;
+        }
+
+        .box1 {
+            display: flex;
+            justify-content: space-between;
+            min-width: 500px;
+        }
+
+        .box1 .a, .box1 .b .box1 .c {
+            height: 100px;
+        }
+
+        .box1 .a {
+            width: 100px;
+        }
+
+        .box1 .b {
+            flex: 1;
+        }
+
+        .box1 .c {
+            width: 100px;
+        }
+
+        /*----------------------------------*/
+
+        .box2 {
+            display: table;
+            min-width: 500px;
+            width: 100%;
+            height: 100px;
+        }
+
+        .box2 .a, .box2 .b, .box2 .c {
+            height: 100%;
+            display: table-cell;
+        }
+
+        .box2 .a {
+            width: 100px;
+        }
+
+        .box2 .c {
+            width: 100px;
+        }
+
+        /*----------------------------------*/
+
+        .box3 {
+            font-size: 0;
+        }
+
+        .box3 .a, .box3 .b, .box3 .c {
+            display: inline-block;
+            vertical-align: top;
+            height: 100px;
+            font-size: 14px;
+        }
+
+        .box3 .a {
+            width: 100px;
+        }
+
+        .box3 .b {
+            width: calc(100% - 200px);
+        }
+
+        .box3 .c {
+            width: 100px;
+        }
+
+        /*----------------------------------*/
+        .box4 {
+            display: grid;
+            width: 100%;
+            height: 100px;
+            grid-template-columns: 100px 1fr 100px;
+        }
+
+        /*----------------------------------*/
+        .box5 {
+            /*overflow: hidden;*/
+
+        }
+
+        .box5 .a, .box5 .b, .box5 .c {
+            height: 100px;
+        }
+
+        .box5 .a {
+            float: left;
+            width: 100px;
+        }
+
+        .box5 .b {
+            width: 100%;
+        }
+
+        .box5 .c {
+            float: right;
+            width: 100px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>两边宽度固定 中间自适应</h1>
+
+    <div class="box1">
+        <div class="a"></div>
+        <div class="b">Flex</div>
+        <div class="c"></div>
+    </div>
+
+    <br/>
+
+    <div class="box2">
+        <div class="a"></div>
+        <div class="b">Table</div>
+        <div class="c"></div>
+    </div>
+
+    <br/>
+
+    <div class="box3">
+        <div class="a"></div>
+        <div class="b">Inline-block</div>
+        <div class="c"></div>
+    </div>
+
+    <br/>
+
+    <div class="box4">
+        <div class="a"></div>
+        <div class="b">Grid</div>
+        <div class="c"></div>
+    </div>
+    <br/>
+
+    <div class="box5">
+        <div class="a"></div>
+        <div class="c"></div>
+        <div class="b">Float</div>
+    </div>
+</body>
+</html>
